@@ -1,1 +1,525 @@
-<h1>HELLO BHAIYA PEHLA PHYTON + ML APP HAI APKA </h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>House Price Prediction</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <style>
+    body {
+      font-family: 'Arimo', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
+    }
+
+    .container {
+      margin: 50px auto;
+      padding: 20px;
+      max-width: 1200px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .container:hover {
+      transform: translateY(-10px);
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 5px 0;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    input, select {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease-in-out;
+    }
+
+    input:focus, select:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    button {
+      background-color: #007bff;
+      border: none;
+      color: #fff;
+      padding: 15px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 10px auto;
+      cursor: pointer;
+      border-radius: 10px;
+      grid-column: span 2;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .prediction {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+
+    #prediction-text {
+      background: #e9ecef;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>House Price Prediction</h1>
+     <form id="prediction-form">
+		<div>
+			<label for="Order">Order</label>
+			<input type="number" id="Order" name="Order" placeholder="Order"  />
+		  </div>
+		  <div>
+			<label for="PID">PID</label>
+			<input type="number" id="PID" name="PID" placeholder="PID"  />
+		  </div>
+		  <div>
+			<label for="MS_SubClass">MS SubClass</label>
+			<input type="number" id="MS_SubClass" name="MS SubClass" placeholder="MS SubClass" />
+		  </div>
+		  <div>
+			<label for="MS_Zoning">MS Zoning</label>
+			<input type="text" id="MS_Zoning" name="MS Zoning" placeholder="MS Zoning" />
+		  </div>
+		  <div>
+			<label for="Lot_Frontage">Lot Frontage</label>
+			<input type="number" step="0.01" id="Lot_Frontage" name="Lot Frontage" placeholder="Lot Frontage" />
+		  </div>
+		  <div>
+			<label for="Lot_Area">Lot Area</label>
+			<input type="number" id="Lot_Area" name="Lot Area" placeholder="Lot Area" />
+		  </div>
+		  <div>
+			<label for="Street">Street</label>
+			<input type="text" id="Street" name="Street" placeholder="Street"  />
+		  </div>
+		  <div>
+			<label for="Alley">Alley</label>
+			<input type="text" id="Alley" name="Alley" placeholder="Alley" />
+		  </div>
+		  <div>
+			<label for="Lot_Shape">Lot Shape</label>
+			<input type="text" id="Lot_Shape" name="Lot Shape" placeholder="Lot Shape"  />
+		  </div>
+		  <div>
+			<label for="Land_Contour">Land Contour</label>
+			<input type="text" id="Land_Contour" name="Land Contour" placeholder="Land Contour"  />
+		  </div>
+		  <div>
+			<label for="Utilities">Utilities</label>
+			<input type="text" id="Utilities" name="Utilities" placeholder="Utilities" />
+		  </div>
+		  <div>
+			<label for="Lot_Config">Lot Config</label>
+			<input type="text" id="Lot_Config" name="Lot Config" placeholder="Lot Config"  />
+		  </div>
+		  <div>
+			<label for="Land_Slope">Land Slope</label>
+			<input type="text" id="Land_Slope" name="Land Slope" placeholder="Land Slope"  />
+		  </div>
+		  <div>
+			<label for="Neighborhood">Neighborhood</label>
+			<input type="text" id="Neighborhood" name="Neighborhood" placeholder="Neighborhood"  />
+		  </div>
+		  <div>
+			<label for="Condition_1">Condition 1</label>
+			<input type="text" id="Condition_1" name="Condition 1" placeholder="Condition 1"  />
+		  </div>
+		  <div>
+			<label for="Condition_2">Condition 2</label>
+			<input type="text" id="Condition_2" name="Condition 2" placeholder="Condition 2" />
+		  </div>
+		  <div>
+			<label for="Bldg_Type">Bldg Type</label>
+			<input type="text" id="Bldg_Type" name="Bldg Type" placeholder="Bldg Type"  />
+		  </div>
+		  <div>
+			<label for="House_Style">House Style</label>
+			<input type="text" id="House_Style" name="House Style" placeholder="House Style"  />
+		  </div>
+		  <div>
+			<label for="Overall_Qual">Overall Qual</label>
+			<input type="number" id="Overall_Qual" name="Overall Qual" placeholder="Overall Qual"  />
+		  </div>
+		  <div>
+			<label for="Overall_Cond">Overall Cond</label>
+			<input type="number" id="Overall_Cond" name="Overall Cond" placeholder="Overall Cond"  />
+		  </div>
+		  <div>
+			<label for="Year_Built">Year Built</label>
+			<input type="number" id="Year_Built" name="Year Built" placeholder="Year Built" />
+		  </div>
+		  <div>
+			<label for="Year_Remod_Add">Year Remod/Add</label>
+			<input type="number" id="Year_Remod_Add" name="Year Remod/Add" placeholder="Year Remod/Add" />
+		  </div>
+		  <div>
+			<label for="Roof_Style">Roof Style</label>
+			<input type="text" id="Roof_Style" name="Roof Style" placeholder="Roof Style"  />
+		  </div>
+		  <div>
+			<label for="Roof_Matl">Roof Matl</label>
+			<input type="text" id="Roof_Matl" name="Roof Matl" placeholder="Roof Matl"  />
+		  </div>
+		  <div>
+			<label for="Exterior_1st">Exterior 1st</label>
+			<input type="text" id="Exterior_1st" name="Exterior 1st" placeholder="Exterior 1st" />
+		  </div>
+		  <div>
+			<label for="Exterior_2nd">Exterior 2nd</label>
+			<input type="text" id="Exterior_2nd" name="Exterior 2nd" placeholder="Exterior 2nd" />
+		  </div>
+		  <div>
+			<label for="Mas_Vnr_Type">Mas Vnr Type</label>
+			<input type="text" id="Mas_Vnr_Type" name="Mas Vnr Type" placeholder="Mas Vnr Type" />
+		  </div>
+		  <div>
+			<label for="Mas_Vnr_Area">Mas Vnr Area</label>
+			<input type="number" id="Mas_Vnr_Area" name="Mas Vnr Area" placeholder="Mas Vnr Area"  />
+		  </div>
+		  <div>
+			<label for="Exter_Qual">Exter Qual</label>
+			<input type="text" id="Exter_Qual" name="Exter Qual" placeholder="Exter Qual" />
+		  </div>
+		  <div>
+			<label for="Exter_Cond">Exter Cond</label>
+			<input type="text" id="Exter_Cond" name="Exter Cond" placeholder="Exter Cond"  />
+		  </div>
+		  <div>
+			<label for="Foundation">Foundation</label>
+			<input type="text" id="Foundation" name="Foundation" placeholder="Foundation"  />
+		  </div>
+		  <div>
+			<label for="Bsmt_Qual">Bsmt Qual</label>
+			<input type="text" id="Bsmt_Qual" name="Bsmt Qual" placeholder="Bsmt Qual" />
+		  </div>
+		  <div>
+			<label for="Bsmt_Cond">Bsmt Cond</label>
+			<input type="text" id="Bsmt_Cond" name="Bsmt Cond" placeholder="Bsmt Cond"  />
+		  </div>
+		  <div>
+			<label for="Bsmt_Exposure">Bsmt Exposure</label>
+			<input type="text" id="Bsmt_Exposure" name="Bsmt Exposure" placeholder="Bsmt Exposure"  />
+		  </div>
+		  <div>
+			<label for="BsmtFin_Type_1">BsmtFin Type 1</label>
+			<input type="text" id="BsmtFin_Type_1" name="BsmtFin Type 1" placeholder="BsmtFin Type 1"  />
+		  </div>
+		  <div>
+			<label for="BsmtFin_SF_1">BsmtFin SF 1</label>
+			<input type="number" id="BsmtFin_SF_1" name="BsmtFin SF 1" placeholder="BsmtFin SF 1"  />
+		  </div>
+		  <div>
+			<label for="BsmtFin_Type_2">BsmtFin Type 2</label>
+			<input type="text" id="BsmtFin_Type_2" name="BsmtFin Type 2" placeholder="BsmtFin Type 2" />
+		  </div>
+		  <div>
+			<label for="BsmtFin_SF_2">BsmtFin SF 2</label>
+			<input type="number" id="BsmtFin_SF_2" name="BsmtFin SF 2" placeholder="BsmtFin SF 2" />
+		  </div>
+		  <div>
+			<label for="Bsmt_Unf_SF">Bsmt Unf SF</label>
+			<input type="number" id="Bsmt_Unf_SF" name="Bsmt Unf SF" placeholder="Bsmt Unf SF"  />
+		  </div>
+		  <div>
+			<label for="Total_Bsmt_SF">Total Bsmt SF</label>
+			<input type="number" id="Total_Bsmt_SF" name="Total Bsmt SF" placeholder="Total Bsmt SF"  />
+		  </div>
+		  <div>
+			<label for="Heating">Heating</label>
+			<input type="text" id="Heating" name="Heating" placeholder="Heating"  />
+		  </div>
+		  <div>
+			<label for="Heating_QC">Heating QC</label>
+			<input type="text" id="Heating_QC" name="Heating QC" placeholder="Heating QC"  />
+		  </div>
+		  <div>
+			<label for="Central_Air">Central Air</label>
+			<input type="text" id="Central_Air" name="Central Air" placeholder="Central Air"/>
+		  </div>
+		  <div>
+			<label for="Electrical">Electrical</label>
+			<input type="text" id="Electrical" name="Electrical" placeholder="Electrical"  />
+		  </div>
+		  <div>
+			<label for="1st_Flr_SF">1st Flr SF</label>
+			<input type="number" id="1st_Flr_SF" name="1st Flr SF" placeholder="1st Flr SF" />
+		  </div>
+		  <div>
+			<label for="2nd_Flr_SF">2nd Flr SF</label>
+			<input type="number" id="2nd_Flr_SF" name="2nd Flr SF" placeholder="2nd Flr SF" />
+		  </div>
+		  <div>
+			<label for="Low_Qual_Fin_SF">Low Qual Fin SF</label>
+			<input type="number" id="Low_Qual_Fin_SF" name="Low Qual Fin SF" placeholder="Low Qual Fin SF" />
+		  </div>
+		  <div>
+			<label for="Gr_Liv_Area">Gr Liv Area</label>
+			<input type="number" id="Gr_Liv_Area" name="Gr Liv Area" placeholder="Gr Liv Area"  />
+		  </div>
+		  <div>
+			<label for="Bsmt_Full_Bath">Bsmt Full Bath</label>
+			<input type="number" id="Bsmt_Full_Bath" name="Bsmt Full Bath" placeholder="Bsmt Full Bath" />
+		  </div>
+		  <div>
+			<label for="Bsmt_Half_Bath">Bsmt Half Bath</label>
+			<input type="number" id="Bsmt_Half_Bath" name="Bsmt Half Bath" placeholder="Bsmt Half Bath" />
+		  </div>
+		  <div>
+			<label for="Full_Bath">Full Bath</label>
+			<input type="number" id="Full_Bath" name="Full Bath" placeholder="Full Bath"  />
+		  </div>
+		  <div>
+			<label for="Half_Bath">Half Bath</label>
+			<input type="number" id="Half_Bath" name="Half Bath" placeholder="Half Bath" />
+		  </div>
+		  <div>
+			<label for="Bedroom_AbvGr">Bedroom AbvGr</label>
+			<input type="number" id="Bedroom_AbvGr" name="Bedroom AbvGr" placeholder="Bedroom AbvGr"  />
+		  </div>
+		  <div>
+			<label for="Kitchen_AbvGr">Kitchen AbvGr</label>
+			<input type="number" id="Kitchen_AbvGr" name="Kitchen AbvGr" placeholder="Kitchen AbvGr"  />
+		  </div>
+		  <div>
+			<label for="Kitchen_Qual">Kitchen Qual</label>
+			<input type="text" id="Kitchen_Qual" name="Kitchen Qual" placeholder="Kitchen Qual"  />
+		  </div>
+		  <div>
+			<label for="TotRms_AbvGrd">TotRms AbvGrd</label>
+			<input type="number" id="TotRms_AbvGrd" name="TotRms AbvGrd" placeholder="TotRms AbvGrd"  />
+		  </div>
+		  <div>
+			<label for="Functional">Functional</label>
+			<input type="text" id="Functional" name="Functional" placeholder="Functional"  />
+		  </div>
+		  <div>
+			<label for="Fireplaces">Fireplaces</label>
+			<input type="number" id="Fireplaces" name="Fireplaces" placeholder="Fireplaces" />
+		  </div>
+		  <div>
+			<label for="Fireplace_Qu">Fireplace Qu</label>
+			<input type="text" id="Fireplace_Qu" name="Fireplace Qu" placeholder="Fireplace Qu" />
+		  </div>
+		  <div>
+			<label for="Garage_Type">Garage Type</label>
+			<input type="text" id="Garage_Type" name="Garage Type" placeholder="Garage Type"  />
+		  </div>
+		  <div>
+			<label for="Garage_Yr_Blt">Garage Yr Blt</label>
+			<input type="number" id="Garage_Yr_Blt" name="Garage Yr Blt" placeholder="Garage Yr Blt"  />
+		  </div>
+		  <div>
+			<label for="Garage_Finish">Garage Finish</label>
+			<input type="text" id="Garage_Finish" name="Garage Finish" placeholder="Garage Finish" />
+		  </div>
+		  <div>
+			<label for="Garage_Cars">Garage Cars</label>
+			<input type="number" id="Garage_Cars" name="Garage Cars" placeholder="Garage Cars" />
+		  </div>
+		  <div>
+			<label for="Garage_Area">Garage Area</label>
+			<input type="number" id="Garage_Area" name="Garage Area" placeholder="Garage Area" />
+		  </div>
+		  <div>
+			<label for="Garage_Qual">Garage Qual</label>
+			<input type="text" id="Garage_Qual" name="Garage Qual" placeholder="Garage Qual"  />
+		  </div>
+		  <div>
+			<label for="Garage_Cond">Garage Cond</label>
+			<input type="text" id="Garage_Cond" name="Garage Cond" placeholder="Garage Cond"  />
+		  </div>
+		  <div>
+			<label for="Paved_Drive">Paved Drive</label>
+			<input type="text" id="Paved_Drive" name="Paved Drive" placeholder="Paved Drive"  />
+		  </div>
+		  <div>
+			<label for="Wood_Deck_SF">Wood Deck SF</label>
+			<input type="number" id="Wood_Deck_SF" name="Wood Deck SF" placeholder="Wood Deck SF"  />
+		  </div>
+		  <div>
+			<label for="Open_Porch_SF">Open Porch SF</label>
+			<input type="number" id="Open_Porch_SF" name="Open Porch SF" placeholder="Open Porch SF" />
+		  </div>
+		  <div>
+			<label for="Enclosed_Porch">Enclosed Porch</label>
+			<input type="number" id="Enclosed_Porch" name="Enclosed Porch" placeholder="Enclosed Porch" />
+		  </div>
+		  <div>
+			<label for="3Ssn_Porch">3Ssn Porch</label>
+			<input type="number" id="3Ssn_Porch" name="3Ssn Porch" placeholder="3Ssn Porch" />
+		  </div>
+		  <div>
+			<label for="Screen_Porch">Screen Porch</label>
+			<input type="number" id="Screen_Porch" name="Screen Porch" placeholder="Screen Porch" />
+		  </div>
+		  <div>
+			<label for="Pool_Area">Pool Area</label>
+			<input type="number" id="Pool_Area" name="Pool Area" placeholder="Pool Area" />
+		  </div>
+		  <div>
+			<label for="Pool_QC">Pool QC</label>
+			<input type="text" id="Pool_QC" name="Pool QC" placeholder="Pool QC" />
+		  </div>
+		  <div>
+			<label for="Fence">Fence</label>
+			<input type="text" id="Fence" name="Fence" placeholder="Fence"  />
+		  </div>
+		  <div>
+			<label for="Misc_Feature">Misc Feature</label>
+			<input type="text" id="Misc_Feature" name="Misc Feature" placeholder="Misc Feature" />
+		  </div>
+		  <div>
+			<label for="Misc_Val">Misc Val</label>
+			<input type="number" id="Misc_Val" name="Misc Val" placeholder="Misc Val"  />
+		  </div>
+		  <div>
+			<label for="Mo_Sold">Mo Sold</label>
+			<input type="number" id="Mo_Sold" name="Mo Sold" placeholder="Mo Sold" />
+		  </div>
+		  <div>
+			<label for="Yr_Sold">Yr Sold</label>
+			<input type="number" id="Yr_Sold" name="Yr Sold" placeholder="Yr Sold"  />
+		  </div>
+		  <div>
+			<label for="Sale_Type">Sale Type</label>
+			<input type="text" id="Sale_Type" name="Sale Type" placeholder="Sale Type"  />
+		  </div>
+		  <div>
+			<label for="Sale_Condition">Sale Condition</label>
+			<input type="text" id="Sale_Condition" name="Sale Condition" placeholder="Sale Condition"  />
+		  </div>
+		  <div>
+			<label for="SalePrice">SalePrice</label>
+			<input type="number" id="SalePrice" name="SalePrice" placeholder="SalePrice" />
+		  </div>
+		  <button type="button" id="autofill-btn">Autofill Random Data</button>
+		
+		<button type="submit">Predict</button>
+	</form>
+    <div class="prediction">
+      <p id="prediction-text"></p>
+    </div>
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const autofillBtn = document.getElementById('autofill-btn');
+    if (autofillBtn) {
+        autofillBtn.addEventListener('click', function() {
+            fetch('/random_row')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Fetched data:', data);
+                    for (const [key, value] of Object.entries(data)) {
+                        const input = document.querySelector(`[name="${key}"]`);
+                        if (input) {
+                            if (input.type === 'checkbox') {
+                                input.checked = value === 'True'; // Adjust based on actual data type
+                            } else {
+                                input.value = value !== null ? value : '';
+                            }
+                        } else {
+                            console.warn(`No input found for key: ${key}`);
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching random data:', error);
+                });
+        });
+    } else {
+        console.warn('Autofill button not found.');
+    }
+
+    const predictionForm = document.getElementById('prediction-form');
+    if (predictionForm) {
+        predictionForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const data = {};
+
+            formData.forEach((value, key) => {
+                if (!isNaN(value) && value.trim() !== '') {
+                    data[key] = parseInt(value, 10);
+                } else {
+                    data[key] = value;
+                }
+            });
+
+            const payload = { data };
+
+            console.log('Data to send:', payload);
+
+            fetch('/predict_api', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.error) {
+                    document.getElementById('prediction-text').textContent = `Error: ${result.error}`;
+                } else {
+                    document.getElementById('prediction-text').textContent = `Predicted Sale Price: $${result.predictedPrice}`;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('prediction-text').textContent = `Error: ${error.message}`;
+            });
+        });
+    } else {
+        console.warn('Prediction form not found.');
+    }
+});
+</script>
+
+ </body>
+
+</html>
