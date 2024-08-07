@@ -1,5 +1,6 @@
-Flask (For web applicaton)
+Flask 
 sklearn
 pandas
 numpy
 matplotlib 
+gunicorn
